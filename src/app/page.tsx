@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
         <div className='mx-auto text-center flex flex-col items-center max-w-3xl'>
-          <div className="relative lg:h-[calc(100vh-63px)] overflow-auto md:h-96 w-screen">
+          <div className="relative w-screen overflow-auto lg:h-[calc(100vh-63px)] flex-shrink-0">
           <div className="">
             <Image
               src={chinatown}
@@ -18,7 +18,7 @@ export default function Home() {
               fill
               className="brightness-50"
             />
-              <h1 className="absolute z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-6xl text-white text-nowrap">
+              <h1 className="absolute z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-6xl text-white lg:text-nowrap">
                 The Chinatown Network
               </h1>
             </div>

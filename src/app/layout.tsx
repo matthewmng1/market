@@ -5,6 +5,7 @@ import "./globals.css";
 import { NavBar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
+import { Toaster } from "sonner";
 
 const dm_serif = DM_Serif_Display({ subsets: ["latin"], style: ["normal"], weight: "400"});
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             <Footer/>
             </Providers>
           </main>
+          <Toaster position="top-center" richColors/>
       </body>
     </html>
   )

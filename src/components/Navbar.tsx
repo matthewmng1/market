@@ -6,10 +6,12 @@ import { NavBarItems } from "./NavBarItems";
 import { ShoppingNavBar } from "./ShoppingNavBar";
 import { buttonVariants } from "./ui/button";
 import Image from "next/image";
+import { getServerSideUser } from "@/lib/payload-utils";
+import { cookies } from "next/headers";
 
-export const NavBar = () => {
-
-  const user = null;
+export const NavBar = async () => {
+  const nextCookies = cookies()
+  const { user }= await getServerSideUser(nextCookies)
 
   return (
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
