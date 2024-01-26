@@ -44,8 +44,6 @@ export default function Page() {
       onSuccess: async () => {
         toast.success('Signed in successfully')
 
-        router.refresh()
-
         // if (origin) {
         //   router.push(`/${origin}`)
         //   return
@@ -57,6 +55,8 @@ export default function Page() {
         // }
 
         router.push('/')
+
+        router.refresh()
       },
       onError: (err) => {
         if (err.data?.code === 'UNAUTHORIZED') {

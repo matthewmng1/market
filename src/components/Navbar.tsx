@@ -5,11 +5,11 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { NavBarItems } from "./NavBarItems";
 import { ShoppingNavBar } from "./ShoppingNavBar";
 import { buttonVariants } from "./ui/button";
-import Image from "next/image";
 import { getServerSideUser } from "@/lib/payload-utils";
 import { cookies } from "next/headers";
+import UserAccountNav from "./UserAccountNav";
 
-export const NavBar = async () => {
+const NavBar = async () => {
   const nextCookies = cookies()
   const { user }= await getServerSideUser(nextCookies)
 
@@ -42,7 +42,7 @@ export const NavBar = async () => {
                         aria-hidden='true'
                       />
                     )}
-                  {user ? null : (
+                  {user ? <UserAccountNav user={user}/> : (
                     <Link href='/register' className={buttonVariants({variant: "ghost"})}>
                       Register
                     </Link>
@@ -53,28 +53,6 @@ export const NavBar = async () => {
                         aria-hidden='true'
                       />
                     )}
-                  {user ? (
-                    <Link href='/account' className={buttonVariants({variant: "ghost"})}>
-                      Account
-                    </Link>
-                  ) : null }
-                  {user ? (
-                    <span 
-                      className="h-6 w-px bg-gray-200" 
-                      aria-hidden='true'
-                    />
-                  ) : null }
-                  {user ? (
-                    <Link href='/sign-out' className={buttonVariants({variant: "ghost"})}>
-                      Sign out
-                    </Link>
-                  ) : null}
-                  {user ? (
-                    <span 
-                      className="h-6 w-px bg-gray-200" 
-                      aria-hidden='true'
-                    />
-                  ) : null }
                   <div className="m-4 flow-root lg:ml-6">
                     <Cart />
                   </div>
@@ -88,3 +66,5 @@ export const NavBar = async () => {
     </div>
   )
 }
+
+export default NavBar
