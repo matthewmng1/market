@@ -11,7 +11,7 @@ export  const ShoppingNavBar = () => {
         <div className="border-b border-gray-200">
           <div className="flex h-10 items-center">
             <div className="mx-auto flex items-center space-x-auto">
-            <Link href='shop/best-sellers' className={buttonVariants({ variant: "ghost" })}>Best Sellers</Link>
+            <Link href='/shop/best-sellers' className={buttonVariants({ variant: "ghost" })}>Best Sellers</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'

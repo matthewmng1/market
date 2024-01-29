@@ -39,7 +39,8 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  category: ('best-sellers' | 'yearly' | 'hoodies-crews' | 't-shirts' | 'accessories' | 'sale')[];
+  category: 'best-sellers' | 'yearly' | 'hoodies-crews' | 't-shirts' | 'accessories' | 'sale';
+  subCategories?: ('best-sellers' | 'yearly' | 'hoodies-crews' | 't-shirts' | 'accessories' | 'sale')[] | null;
   displayItem?: ('display' | 'noDisplay') | null;
   priceId?: string | null;
   stripeId?: string | null;

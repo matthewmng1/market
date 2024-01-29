@@ -41,12 +41,22 @@ export const Products: CollectionConfig = {
     },
     {
       name: "category",
-      label: "Category",
+      label: "category",
       type: "select", 
       options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
         ({ label, value }) => ({ label, value })
       ),
       required: true,
+      hasMany: false
+    },
+    {
+      name: "subCategories",
+      label: "SubCategories",
+      type: "select", 
+      options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
+        ({ label, value }) => ({ label, value })
+      ),
+      required: false,
       hasMany: true
     },
     // {
