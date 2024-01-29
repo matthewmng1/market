@@ -1,5 +1,7 @@
+import { PRODUCT_CATEGORIES } from "../../config";
+import { Access, CollectionConfig } from 'payload/types'
+import { Product, User } from '../../payload-types'
 import { Abel } from "next/font/google";
-import { CollectionConfig } from "payload/types";
 
 export const Products: CollectionConfig = {
   slug: "products",
@@ -37,28 +39,29 @@ export const Products: CollectionConfig = {
       type: "number",
       required: true,
     },
+    {
+      name: "category",
+      label: "Category",
+      type: "select", 
+      options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
+        ({ label, value }) => ({ label, value })
+      ),
+      required: true,
+      hasMany: true
+    },
     // {
-    //   name: "category",
-    //   label: "Category",
-    //   type: "select", 
-    //   options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
-    //     ({ label, value }) => ({ label, value })
-    //   ),
-    //   required: true
+    //   name: "product_files",
+    //   label: "Product file(s)",
+    //   type: "relationship",
+    //   required: true,
+    //   relationTo: "product_files",
+    //   hasMany: false
     // },
     {
-      name: "product_files",
-      label: "Product file(s)",
-      type: "relationship",
-      required: true,
-      relationTo: "product_files",
-      hasMany: false
-    },
-    { // this is for implementing users to add products and admins to check them
-      name: "approvedForSale",
-      label: "Product Status",
+      name: "displayItem",
+      label: "Display Item",
       type: "select",
-      defaultValue: "pending",
+      defaultValue: "Yes - Display",
       access: {
         create: ({ req }) => req.user.role === "admin",
         read: ({ req }) => req.user.role === "admin",
@@ -66,19 +69,40 @@ export const Products: CollectionConfig = {
       },
       options: [
         {
-          label: "Pending Verification",
-          value: "pending"
+          label: "Yes - Display",
+          value: "display"
         },
         {
-          label: "Approved",
-          value: "approved"
-        },
-        {
-          label: "Denied",
-          value: "denied"
-        },
-      ],
+          label: "No - Do Not Display",
+          value: "noDisplay"
+        }
+      ]
     },
+    // { // this is for implementing users to add products and admins to check them
+    //   name: "approvedForSale",
+    //   label: "Product Status",
+    //   type: "select",
+    //   defaultValue: "pending",
+      // access: {
+      //   create: ({ req }) => req.user.role === "admin",
+      //   read: ({ req }) => req.user.role === "admin",
+      //   update: ({ req }) => req.user.role === "admin",
+      // },
+    //   options: [
+    //     {
+    //       label: "Pending Verification",
+    //       value: "pending"
+    //     },
+    //     {
+    //       label: "Approved",
+    //       value: "approved"
+    //     },
+    //     {
+    //       label: "Denied",
+    //       value: "denied"
+    //     },
+    //   ],
+    // },
     {
       name: "priceId",
       access: {

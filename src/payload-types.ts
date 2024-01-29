@@ -11,7 +11,6 @@ export interface Config {
     users: User;
     products: Product;
     media: Media;
-    product_files: ProductFile;
     orders: Order;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -40,8 +39,8 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  product_files: string | ProductFile;
-  approvedForSale?: ('pending' | 'approved' | 'denied') | null;
+  category: ('best-sellers' | 'yearly' | 'hoodies-crews' | 't-shirts' | 'accessories' | 'sale')[];
+  displayItem?: ('display' | 'noDisplay') | null;
   priceId?: string | null;
   stripeId?: string | null;
   images: {
@@ -50,18 +49,6 @@ export interface Product {
   }[];
   updatedAt: string;
   createdAt: string;
-}
-export interface ProductFile {
-  id: string;
-  user?: (string | null) | User;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
 }
 export interface Media {
   id: string;
