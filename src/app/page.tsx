@@ -1,4 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import ProductReel from "@/components/ProductReel";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -25,8 +26,8 @@ export default function Home() {
           </div>
         </div>
       <section className="border-t border-gray-200 bg-gray-50 py-20">
-        <MaxWidthWrapper className="py-20">
-
+        <MaxWidthWrapper className="py-10">
+          <ProductReel query={{ sort: "desc", limit:4 }} href='/products' title='Brand New'/>
         </MaxWidthWrapper>
         
       </section>

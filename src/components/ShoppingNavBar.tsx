@@ -11,32 +11,32 @@ export  const ShoppingNavBar = () => {
         <div className="border-b border-gray-200">
           <div className="flex h-10 items-center">
             <div className="mx-auto flex items-center space-x-auto">
-            <Link href='/shop-bestsellers' className={buttonVariants({ variant: "ghost" })}>Best Sellers</Link>
+            <Link href='shop/best-sellers' className={buttonVariants({ variant: "ghost" })}>Best Sellers</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop-yearlyproducts' className={buttonVariants({variant: "ghost"})}>Year of the Dragon</Link>
+            <Link href='/shop/yearly' className={buttonVariants({variant: "ghost"})}>Year of the Dragon</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop-hoodiescrews' className={buttonVariants({variant: "ghost"})}>Hoodies & Crewnecks</Link>
+            <Link href='/shop/hoodies-crews' className={buttonVariants({variant: "ghost"})}>Hoodies & Crewnecks</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop-tshirts' className={buttonVariants({variant: "ghost"})}>T-Shirts</Link>
+            <Link href='/shop/t-shirts' className={buttonVariants({variant: "ghost"})}>T-Shirts</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop-accessories' className={buttonVariants({variant: "ghost"})}>Accessories</Link>
+            <Link href='/shop/accessories' className={buttonVariants({variant: "ghost"})}>Accessories</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop-sale' className={buttonVariants({variant: "ghost"})}>Sale</Link>
+            <Link href='/shop/sale' className={buttonVariants({variant: "ghost"})}>Sale</Link>
             </div>
           </div>
         </div>
