@@ -1,8 +1,9 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import ProductPage from "@/components/ProductPage"
-import { PRODUCT_CATEGORIES } from "@/config"
+import { PRODUCT_CATEGORIES, PRODUCT_CATEGORIES_TEST } from "@/config"
 import { getPayloadClient } from "@/get-payload"
 import Link from "next/link"
+import { off } from "process"
 
 interface PageProps {
   params: {
@@ -15,7 +16,7 @@ const Page = async ({ params }: PageProps) => {
 
   const payload = await getPayloadClient()
 
-  const { docs: products } = await payload.find({
+  const { docs: productsByCategory } = await payload.find({
     collection: 'products',
     where: {
       category: {
@@ -26,14 +27,37 @@ const Page = async ({ params }: PageProps) => {
       }
     }
   })
-  console.log(products) 
 
-  // const [product] = products
-  const label = PRODUCT_CATEGORIES.find(
-      ({ value }) => value === products[0]?.category
-    )?.label
+  const { docs: productsByCollection } = await payload.find({
+    collection: 'products',
+    where: {
+      productCollections: {
+        contains: productCategory,
+      },
+      displayItem: {
+        equals: 'display',
+      },
+    },
+  });
 
-  const displayLabel = label?.replace(/-/g, ' ');
+  const products = productsByCategory.length > 0 ? productsByCategory : productsByCollection
+  const productCollection = productsByCollection[0]?.productCollections?.find((c) => c === productCategory)
+  
+  const label = productsByCategory.length > 0 
+    ? PRODUCT_CATEGORIES.find(({ value }) => value === productsByCategory[0]?.category)?.label
+    : PRODUCT_CATEGORIES.find(({ value }) => value === productCollection)?.label
+  // const collectionLabel = PRODUCT_CATEGORIES.find(({value}) => value === productsByCategory[0].collections[0])?.label
+
+  console.log(label)
+  let displayLabel; 
+  if(label == undefined){
+    const title = productCategory.split('-')
+    displayLabel = title.map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+  } else {
+    displayLabel = label?.replace(/-/g, ' ');
+  }
 
   const BREADCRUMBS = [
     { id: 1, name: 'Home', href: '/' },
@@ -69,7 +93,17 @@ const Page = async ({ params }: PageProps) => {
             </ol>
           </div>
         </div>
-        <ProductPage title={displayLabel} query={{limit: 12}} products={products}/>
+
+        {products.length > 0  ? (
+          <ProductPage title={displayLabel} query={{limit: 12}} products={products}/>
+        ) : (
+          <div>
+            <ProductPage title={displayLabel} query={{limit: 12}} products={products}/>
+            <span className="flex ml-20 py-10">Nothing here!</span>
+            
+          </div>
+        )}
+        
 
             {/* 
               Large Screens: 4x3

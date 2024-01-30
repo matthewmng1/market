@@ -40,7 +40,7 @@ export interface Product {
   description?: string | null;
   price: number;
   category: 'best-sellers' | 'annual-apparel' | 'hoodies-and-crewnecks' | 't-shirts' | 'accessories' | 'sale';
-  subCategories?:
+  productCollections?:
     | ('best-sellers' | 'annual-apparel' | 'hoodies-and-crewnecks' | 't-shirts' | 'accessories' | 'sale')[]
     | null;
   displayItem?: ('display' | 'noDisplay') | null;

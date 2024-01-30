@@ -41,7 +41,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: "category",
-      label: "category",
+      label: "Category",
       type: "select", 
       options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
         ({ label, value }) => ({ label, value })
@@ -50,8 +50,8 @@ export const Products: CollectionConfig = {
       hasMany: false
     },
     {
-      name: "subCategories",
-      label: "SubCategories",
+      name: "productCollections",
+      label: "Collections",
       type: "select", 
       options: PRODUCT_CATEGORIES.map( // change later after figuring out where products will come from
         ({ label, value }) => ({ label, value })
@@ -59,14 +59,6 @@ export const Products: CollectionConfig = {
       required: false,
       hasMany: true
     },
-    // {
-    //   name: "product_files",
-    //   label: "Product file(s)",
-    //   type: "relationship",
-    //   required: true,
-    //   relationTo: "product_files",
-    //   hasMany: false
-    // },
     {
       name: "displayItem",
       label: "Display Item",

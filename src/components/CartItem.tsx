@@ -61,7 +61,6 @@ const CartItem = ({ product, quantity }: CartItemProps) => {
                 <div className="flex flex-row border border-black">
                   <button onClick={decrement} className="pl-2 text-sm font-semibold text-center">-</button>
                     <div className="px-2">{selectedQuantity}</div>
-                    {/* <input type="number" value={selectedQuantity} onChange={handleQuantityChange} /> */}
                   <button onClick={increment} className="pr-2 text-sm font-semibold text-center">+</button>
                 </div>
               </div>
@@ -80,6 +79,9 @@ const CartItem = ({ product, quantity }: CartItemProps) => {
         <div className='flex flex-col space-y-1 font-medium'>
           <span className='ml-auto line-clamp-1 text-sm'>
             {formatPrice(product.price * quantity)}
+          </span>
+          <span className='ml-auto line-clamp-1 text-xs text-muted-foreground'>
+            {formatPrice(product.price)} / ea.
           </span>
         </div>
       </div>
