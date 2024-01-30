@@ -1,5 +1,5 @@
 // import AddToCartButton from '@/components/AddToCartButton'
-import AddToCartButton from '@/components/AddToCartButton'
+import AddToCartButton from '@/components/AddToCart'
 import ImageSlider from '@/components/ImageSlider'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import ProductReel from '@/components/ProductReel'
@@ -14,6 +14,7 @@ interface PageProps {
   params: {
     productId: string
   }
+  quantity: number
 }
 
 const BREADCRUMBS = [
@@ -21,7 +22,7 @@ const BREADCRUMBS = [
   { id: 2, name: 'Products', href: '/products' },
 ]
 
-const Page = async ({ params }: PageProps) => {
+const Page = async ({ params, quantity = 1 }: PageProps) => {
   const { productId } = params
 
   const payload = await getPayloadClient()
@@ -40,6 +41,7 @@ const Page = async ({ params }: PageProps) => {
   })
 
   const [product] = products
+  console.log(product)
 
   if (!product) return notFound()
 
@@ -55,6 +57,7 @@ const Page = async ({ params }: PageProps) => {
       typeof image === 'string' ? image : image.url
     )
     .filter(Boolean) as string[]
+  
 
   return (
     <MaxWidthWrapper className='bg-white'>
@@ -114,7 +117,7 @@ const Page = async ({ params }: PageProps) => {
                   className='h-5 w-5 flex-shrink-0 text-green-500'
                 />
                 <p className='ml-2 text-sm text-muted-foreground'>
-                  Eligible for instant delivery
+                  In stock
                 </p>
               </div>
             </section>
@@ -130,8 +133,8 @@ const Page = async ({ params }: PageProps) => {
           {/* add to cart part */}
           <div className='mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start'>
             <div>
-              <div className='mt-10'>
-                <AddToCartButton product={product} />
+              <div className='mt-10 flex flex-col'>
+                <AddToCartButton product={product} quantity={quantity}/>
               </div>
               <div className='mt-6 text-center'>
                 <div className='group inline-flex text-sm text-medium'>
