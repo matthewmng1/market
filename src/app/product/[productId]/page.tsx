@@ -17,10 +17,6 @@ interface PageProps {
   quantity: number
 }
 
-const BREADCRUMBS = [
-  { id: 1, name: 'Home', href: '/' },
-  { id: 2, name: 'Products', href: '/products' },
-]
 
 const Page = async ({ params, quantity = 1 }: PageProps) => {
   const { productId } = params
@@ -41,7 +37,6 @@ const Page = async ({ params, quantity = 1 }: PageProps) => {
   })
 
   const [product] = products
-  console.log(product)
 
   if (!product) return notFound()
 
@@ -57,6 +52,13 @@ const Page = async ({ params, quantity = 1 }: PageProps) => {
       typeof image === 'string' ? image : image.url
     )
     .filter(Boolean) as string[]
+
+  const BREADCRUMBS = [
+    { id: 1, name: 'Home', href: '/' },
+    { id: 2, name: `${label}`, href: `/shop/${product.category}`},
+    { id: 3, name: `${product.name}`, href: `/shop/${product.name}`}
+    
+  ]
   
 
   return (
@@ -65,7 +67,7 @@ const Page = async ({ params, quantity = 1 }: PageProps) => {
         <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'>
           {/* Product Details */}
           <div className='lg:max-w-lg lg:self-end'>
-            <ol className='flex items-center space-x-2'>
+            <ol className='mt-0 flex items-center space-x-2'>
               {BREADCRUMBS.map((breadcrumb, i) => (
                 <li key={breadcrumb.href}>
                   <div className='flex items-center text-sm'>
