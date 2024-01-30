@@ -27,18 +27,10 @@ export default function Home() {
         </div>
       <section className="border-t border-gray-200 bg-gray-50 py-20">
         <MaxWidthWrapper className="py-10">
-          <ProductReel query={{ sort: "desc", limit:4}} href='/products' title='Brand New'/>
+          <ProductReel query={{ sort: "desc", limit: 4}} href='/products' title='Brand New'/>
         </MaxWidthWrapper>
         
       </section>
     </>
   );
 }
-
-
-{/* <Image
-src={chinatown}
-fill
-alt="chinatown"
-className="h-20 brightness-50"
-/> */}

@@ -16,12 +16,12 @@ export  const ShoppingNavBar = () => {
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop/yearly' className={buttonVariants({variant: "ghost"})}>Year of the Dragon</Link>
+            <Link href='/shop/annual-apparel' className={buttonVariants({variant: "ghost"})}>Year of the Dragon</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'
             />
-            <Link href='/shop/hoodies-crews' className={buttonVariants({variant: "ghost"})}>Hoodies & Crewnecks</Link>
+            <Link href='/shop/hoodies-and-crewnecks' className={buttonVariants({variant: "ghost"})}>Hoodies & Crewnecks</Link>
             <span 
               className="h-3 w-px bg-gray-400" 
               aria-hidden='true'

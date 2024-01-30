@@ -22,6 +22,8 @@ const CartItem = ({ product, quantity }: CartItemProps) => {
     ({ value }) => value === product.category
   )?.label
 
+  const displayLabel = label?.replace(/-/g, ' ');
+
   const increment = () => {
     const newQuantity = Math.min(selectedQuantity + 1, 10);
     setSelectedQuantity(newQuantity);
@@ -52,8 +54,8 @@ const CartItem = ({ product, quantity }: CartItemProps) => {
             <span className="line-clamp-1 text-sm font-medium mb-1">
               {product.name}
             </span>
-            <span>{label}</span>
-            <div className="flex flex-row mt-2 text-sm text-muted-foreground">
+            <span className='text-sm text-muted-foreground'>{displayLabel}</span>
+            <div className="flex flex-row text-sm text-muted-foreground">
               Quantity: 
               <div className="bg-white pl-2">
                 <div className="flex flex-row border border-black">

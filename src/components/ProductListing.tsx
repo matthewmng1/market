@@ -41,6 +41,8 @@ const ProductListing = ({
     )
     .filter(Boolean) as string[]
 
+  console.log(validUrls)
+
   return (
     <Link
       className={cn(

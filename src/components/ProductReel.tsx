@@ -21,13 +21,15 @@ const ProductReel = (props: ProductReelProps) => {
   const { data: queryResults, isLoading } =
     trpc.getInfiniteProducts.useInfiniteQuery(
       {
-        limit: query.limit ?? FALLBACK_LIMIT,
+        limit: query.limit ?? FALLBACK_LIMIT, 
         query,
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextPage,
       }
     )
+
+    console.log(queryResults)
 
   const products = queryResults?.pages.flatMap(
     (page) => page.items
@@ -41,6 +43,7 @@ const ProductReel = (props: ProductReelProps) => {
       query.limit ?? FALLBACK_LIMIT
     ).fill(null)
   }
+  console.log(map)
 
   return (
     <section className='py-12'>

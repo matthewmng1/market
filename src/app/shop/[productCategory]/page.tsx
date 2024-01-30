@@ -1,4 +1,5 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
+import ProductPage from "@/components/ProductPage"
 import { PRODUCT_CATEGORIES } from "@/config"
 import { getPayloadClient } from "@/get-payload"
 import Link from "next/link"
@@ -25,27 +26,24 @@ const Page = async ({ params }: PageProps) => {
       }
     }
   })
+  console.log(products) 
 
   // const [product] = products
-
-  let product = products[0]
-
-  console.log(typeof products)
-  console.log(products[1])
-
   const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.category
-  )?.label
+      ({ value }) => value === products[0]?.category
+    )?.label
+
+  const displayLabel = label?.replace(/-/g, ' ');
 
   const BREADCRUMBS = [
     { id: 1, name: 'Home', href: '/' },
-    { id: 2, name: `${label}`, href: `/shop/${productCategory}`}
+    { id: 2, name: `${displayLabel}`, href: `/shop/${productCategory}`}
   ]
 
   return (
     <MaxWidthWrapper>
       <div className="bg-white">
-        <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'>
+        <div className='mx-auto max-w-2xl px-4 pt-16 sm:px-6 sm:pt-16 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'>
           <div className='lg:max-w-lg lg:self-end'>
             <ol className='flex items-center space-x-2'>
               {BREADCRUMBS.map((breadcrumb, i) => (
@@ -71,12 +69,15 @@ const Page = async ({ params }: PageProps) => {
             </ol>
           </div>
         </div>
-        <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'>
-          <div className='lg:max-w-lg lg:self-end'>
-            
-          </div>
+        <ProductPage title={displayLabel} query={{limit: 12}} products={products}/>
 
-        </div>
+            {/* 
+              Large Screens: 4x3
+              Medium Screens: 2x6
+              Small Screens: 1x12
+                      Image - Product Name - Price 
+
+            */}
       </div>
     </MaxWidthWrapper>
   )

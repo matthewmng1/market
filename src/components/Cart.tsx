@@ -33,8 +33,6 @@ export const Cart = () => {
     (total, {product, quantity}) => total + (product.price * quantity), 0
     ) 
 
-  const fee = 0.99
-
   return (
     <Sheet>
       <SheetTrigger className="group -m-2 flex items-center p-2">
@@ -67,15 +65,11 @@ export const Cart = () => {
               <div className="space-y-1.5 text-sm">
                 <div className="flex">
                   <span className="flex-1">Shipping</span>
-                  <span>Free</span>
+                  <span>Calculated at checkout</span>
                 </div>
                 <div className="flex">
-                  <span className="flex-1">Transaction Fee</span>
-                  <span>{formatPrice(fee)}</span>
-                </div>
-                <div className="flex">
-                  <span className="flex-1">Total</span>
-                  <span>{formatPrice(cartTotal + fee)}</span>
+                  <span className="flex-1">Subtotal</span>
+                  <span>{formatPrice(cartTotal)}</span>
                 </div>
               </div>
               <SheetFooter>

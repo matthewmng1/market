@@ -4,12 +4,12 @@ export const PRODUCT_CATEGORIES = [
     value: "best-sellers" as const,
   },
   {
-    label: "Yearly",
-    value: "yearly" as const,
+    label: "Annual-Apparel",
+    value: "annual-apparel" as const,
   },
   {
-    label: "Hoodies-Crews",
-    value: "hoodies-crews" as const,
+    label: "Hoodies-and-Crewnecks",
+    value: "hoodies-and-crewnecks" as const,
   },
   {
     label: "T-Shirts",
